@@ -1,0 +1,190 @@
+[
+{
+"type":"text",
+"options":[],
+"id":1,
+"cat":"PREU" ,
+"es":"PRECIO" ,
+"en":"PRICE",
+"fr":"PRIX"
+},
+{
+"type":"text",
+"options":[],
+"id":2,
+"cat":"KM" ,
+"es":"KM" ,
+"en":"KM" ,
+"fr":"KM"
+},
+{
+"type":"select",
+"options":[],
+"id":3,
+"cat":"INTERIOR" ,
+"es":"INTERIOR" ,
+"en":"INTERIOR" ,
+"fr":"INTERIEUR"
+},
+{
+"type":"select",
+"options":[],
+"id":4,
+"cat":"ESTAT" ,
+"es":"ESTADO" ,
+"en":"STATE" ,
+"fr":"ÉTAT"
+},
+{
+"type":"text",
+"options":[],
+"id":5,
+"cat":"ANY FABRICACIÓ" ,
+"es":"AÑO DE FABRICACIÓN" ,
+"en":"YEAR OF FABRICATION" ,
+"fr":"ANNÉE DE FABRICATION"
+},
+{
+"type":"select",
+"options":[],
+"id":6,
+"cat":"TIPUS" ,
+"es":"TIPO" ,
+"en":"TYPE" ,
+"fr":"TYPE"
+},
+{
+"type":"text",
+"options":[],
+"id":7,
+"cat":"PRIMERA MATRICULACIÓ" ,
+"es":"PRIMERA MATRICULACIÓN" ,
+"en":"FIRST MATRICULATION" ,
+"fr":"PREMIÈRE IMMATRICULATION"
+},
+{
+"type":"select",
+"options":[{"en":"Mercedes","es":"Mercedes","cat":"Mercedes","fr":"Mercedes"},{"en":"Audi","es":"Audi","cat":"Audi","fr":"Audi"},{"en":"Volkswagen","es":"Volkswagen","cat":"Volkswagen","fr":"Volkswagen"},{"en":"Mini","es":"Mini","cat":"Mini","fr":"Mini"},{"en":"BMW","es":"BMW","cat":"BMW","fr":"BMW"},{"en":"Porsche","es":"Porsche","cat":"Porsche","fr":"Porsche"},{"en":"Ferrari","es":"Ferrari","cat":"Ferrari","fr":"Ferrari"},{"en":"Opel","es":"Opel","cat":"Opel","fr":"Opel"},{"en":"Nissan","es":"Nissan","cat":"Nissan","fr":"Nissan"}],
+"id":8,
+"cat":"MARCA" ,
+"es":"MARCA" ,
+"en":"BRAND" ,
+"fr":"MARQUE"
+},
+{
+"type":"text",
+"options":[],
+"id":9,
+"cat":"PROPERA ITV" ,
+"es":"PRÓXIMA ITV" ,
+"en":"NEXT REVISION" ,
+"fr":"PROCHAINE REVISION"
+},
+{
+"type":"text",
+"options":[],
+"id":10,
+"cat":"MODEL" ,
+"es":"MODELO" ,
+"en":"MODEL" ,
+"fr":"MODÈLE"
+},
+{
+"type":"text",
+"options":[],
+"id":11,
+"cat":"DARRERA REVISIÓ" ,
+"es":"ULTIMA REVISIÓN" ,
+"en":"LAST REVISION" ,
+"fr":"DERNIÈRE REVISION"},
+{
+"type":"select",
+"options":[],
+"id":12,
+"cat":"COMBUSTIBLE" ,
+"es":"COMBUSTIBLE" ,
+"en":"FUEL" ,
+"fr":"COMBUSTIBLE"
+},
+{
+"type":"text",
+"options":[],
+"id":13,
+"cat":"PLACES" ,
+"es":"PLAZAS" ,
+"en":"SEATS" ,
+"fr":"PLACES"
+},
+{
+"type":"select",
+"options":[],
+"id":14,
+"cat":"MOTOR" ,
+"es":"MOTOR" ,
+"en":"MOTOR" ,
+"fr":"MOTEUR"
+},
+{
+"type":"select",
+"options":[],
+"id":15,
+"cat":"TRACCIÓ" ,
+"es":"TRACCION" ,
+"en":"TRACTION" ,
+"fr":"TRACTION"
+},
+{
+"type":"select",
+"options":[],
+"id":16,
+"cat":"CANVI" ,
+"es":"CAMBIO" ,
+"en":"GEARSHIFT" ,
+"fr":"CHANGE"
+},
+{
+"type":"select",
+"options":[],
+"id":17,
+"cat":"PORTES" ,
+"es":"PUERTAS" ,
+"en":"DOORS" ,
+"fr":"PORTES"
+},
+{
+"type":"text",
+"options":[],
+"id":18,
+"cat":"COMENTARIS" ,
+"es":"COMENTARIOS" ,
+"en":"COMMENTS" ,
+"fr":"COMMENTAIRES"
+},
+{
+"type":"select",
+"options":[],
+"id":19,
+"cat":"EXTERIOR" ,
+"es":"EXTERIOR" ,
+"en":"EXTERIOR" ,
+"fr":"EXTERIEUR"
+},
+{
+"type":"select",
+"options":[],
+"id":20,
+"cat":"LOCALITZACIÓ" ,
+"es":"LOCALIZACION" ,
+"en":"LOCATION" ,
+"fr":"LOCALISATION"
+},
+{
+"type":"text",
+"options":[],
+"id":21,
+"cat":"REFERÈNCIA" ,
+"es":"REFEREINCIA" ,
+"en":"REFERENCE" ,
+"fr":"REFERÈNCE"
+}
+]

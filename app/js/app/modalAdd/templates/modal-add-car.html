@@ -1,0 +1,74 @@
+<!-- POPUP PER AFEGIR COTXE -->
+<div ng-app="modalAdd" class="modal fade in" id="add-car-modal">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1>
+					<i class="fa fa-plus" style="color:red"></i>
+					Afegir cotxe
+				</h1>
+			</div>
+			<div class="modal-body">
+				<form >
+					<h3>
+						<i class="fa fa-info"></i>
+						Característiques
+					</h3>
+					<div class="form-group row">
+						<div class="col-xs-4" ng-repeat="field in fields" >
+							<input class="form-control"  ng-if="field.type=='text'" placeholder="{{field.cat}}">
+							<select class="form-control" ng-if="field.type=='select'">
+								<option selected>{{field.cat}}</option>
+								<option ng-repeat="option in field.options">{{option.cat}}</option>
+							</select>
+						</div>
+					</div>
+					<h3>
+						<i class="fa fa-image"></i>
+						Imatges
+					</h3>
+					<div ng-controller="FileUploadCtrl">
+
+  						<!-- DROP PART -->
+
+						<form class="navbar-form navbar-left" role="search">
+					    <button ngf-select="uploadFiles($files)" multiple accept="image/*" type="submit" 
+					            class="btn btn-default">Select files</button>
+					    <br><br>
+					    
+					    <ul class="list-group">
+					      <li class="list-group-item" ng-repeat="f in files">
+					      	<div class="media">
+						      	<div class="media-left">
+						      	  <img ngf-thumbnail="!f.$error && f" class="thumbnail">
+						      	</div>
+						      	<div class="media-header">{{f.name}}</div>
+						      	<div class="media-body">
+						      		<span class="progress" ng-show="f.progress >= 0">
+							        	<div style="width:{{f.progress}}%"  
+							            ng-bind="f.progress + '%'"></div>
+							      	</span>
+						      	</div>
+					        </div>
+					      </li>
+					    </ul>
+						    {{errorMsg}}
+						 </form>
+
+					</div>
+					
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-warning">
+					<i class="fa fa-save"></i>
+					Guardar
+				</button>
+				<button class="btn btn-danger" data-dismiss="modal">
+					<i class="fa fa-close"></i>
+					Descartar
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

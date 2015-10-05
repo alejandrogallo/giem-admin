@@ -1,0 +1,25 @@
+{
+  "name": "admin.carsgiem.com",
+  "version": "1.0.0",
+  "description": "Administration environment for Carsgiem",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alejandro Martinez-Soria, Oscar Rovira Puig",
+  "license": "MIT",
+  "dependencies": {
+    "nw": "^0.12.3"
+  },
+  "window":{
+        "title": "Simple Timer",
+    "icon": "images/logo.png",
+    "toolbar": true,
+    "frame": true,
+    "width": 800,
+    "height": 500,
+    "position": "mouse",
+    "min_width": 400,
+    "min_height": 200
+  }
+}
