@@ -3,7 +3,7 @@ var fieldsPath = "db/fields.json";
 var carsPath = "db/cars.json";
 
 
-angular.module('database',[])
+angular.module('database',['xeditable'])
 .service('data', ["$q", function($q) {
 	this.fieldsPath = "db/fields.json";
 	this.carsPath = "db/cars.json";
@@ -23,7 +23,7 @@ angular.module('database',[])
 			if (err) { throw err; } 
 
 			d.resolve(JSON.parse(jsonData));
-			console.log(jsonData);
+			//console.log(jsonData);
 		});
 		return d.promise;
 	}; 
@@ -34,9 +34,17 @@ angular.module('database',[])
 		this.save(this.carsPath, data);	
 	};
 	this.save = function(path, data) {
-		fs.writeFile(path, data, function (err) {
-			if (err) throw err;
-			console.log('fields.json saved!');
+		///////////////////////////////////////////////////////
+		//  This function just saves the data into the file  //
+		///////////////////////////////////////////////////////
+		
+		var jsonData = JSON.stringify(data);
+		fs.writeFile(path, jsonData, function (err) {
+			if (err) {
+				window.alert(err);
+				throw err;
+			}
+			console.log('Data saved in '+path);
 		});
 	};  
 }])
@@ -53,6 +61,22 @@ angular.module('database',[])
 	data.getCars().then(function(jsonData){
 		$scope.cars = jsonData;
 	});
+	$scope.saveAll = function () {
+		if ($scope.fields && $scope.cars) {
+			if (window.confirm("Estàs segur que vols guardar els canvis efectuats?")) {
+				data.saveCars($scope.cars);
+				data.saveFields($scope.fields);	
+			}
+		}
+	};
+	$scope.removeOption = function (field, option) {
+		for (var i = field.options.length - 1; i >= 0; i--) {
+			var some_option = field.options[i];
+			if (JSON.stringify(some_option) == JSON.stringify(option)) {
+				field.options.splice(i,1);
+			}
+		}
+	}
 	$scope.getField = function (fieldName){
 		for (var i = 0; i < $scope.fields.length; i++) {
 			if($scope.fields[i].cat == fieldName){
@@ -61,5 +85,8 @@ angular.module('database',[])
 		}; 
 		return false;     
 	};
+	$scope.deletePictureByIndex = function (car, index) {
+		car.images.splice(index,1);
+	}
 
 }]);
