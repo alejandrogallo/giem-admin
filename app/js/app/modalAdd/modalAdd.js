@@ -51,6 +51,4 @@ angular.module('modalAdd', ['ngFileUpload'])
 			}   
 		});
 	}
-}])
-
-;
+}]) ;

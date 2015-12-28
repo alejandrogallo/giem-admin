@@ -85,6 +85,13 @@ angular.module('database',['xeditable'])
 		}; 
 		return false;     
 	};
+	$scope.singleValue = function (val) {
+		var hash;
+		for (var i = 0, len = $scope.languages.length; i < len; i++) {
+			hash[$scope.language[i]] = val;
+		}
+		return hash;
+	};
 	$scope.deletePictureByIndex = function (car, index) {
 		car.images.splice(index,1);
 	}
