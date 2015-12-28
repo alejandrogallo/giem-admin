@@ -10,38 +10,51 @@
 	</head>
 	<body ng-app="app" ng-controller="FieldsSearchCtrl">
 
-		<div class="btn-group-vertical">
-			<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add-car-modal">
-				<i class="fa fa-plus"></i>
-				<span>Afegir Cotxe</span>
-			</button>
-			<button class="btn btn-primary btn-lg" 
-				   data-toggle="modal" 
-				    data-target="#add-option-modal" 
-				    ng-click="showOptionForm=false">
-				<i class="fa fa-plus"></i>
-				<span>Afegir Opció</span>
-			</button>
-			<button class="btn btn-primary btn-lg" 
-	   data-toggle="modal" 
-    data-target="#edit-field-modal" 
-    ng-click="showOptionForm=false">
-				<i class="fa fa-edit"></i>
-				<span>Editar Camps</span>
-			</button>
-		</div>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">GIEM CARS</a>
+				</div>
+				<div class="container">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" data-toggle="dropdown">
+								<i class="fa fa-plus"></i>
+								Agregar
+								<ul class="dropdown-menu">
+									<li>
+										<a href="#" data-toggle="modal" data-target="#add-car-modal">Cotxes</a>
+										<a href="#" data-toggle="modal" data-target="#add-option-modal">Opció</a>
+									</li>
+								</ul>
 
+							</a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-save"></i> Guardar</a>
+						</li>
+					</ul>
+				</div>
 
-		<div class="container">
-			<!-- DEBUGGING OPTIONS -->
-			<div class="alert alert-info">
-				<h3>Debugging para options <input  type="checkbox" ng-value="false" ng-model="showOptionDebug"> </h3>
+			</div>
+		</nav>
 
-				<ul class="list-group" ng-show="showOptionDebug">
+		<ul class="nav nav-tabs">
+			<li role="presentation" ><a data-toggle="tab" href="#" data-target="#main-cars">Cotxes</a></li>
+			<li role="presentation"><a data-toggle="tab" href="#" data-target="#main-fields">Camps</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<!-- FIELDS FOR LOOP -->
+			<div id="main-fields" class="tab-pane">
+				<ul class="list-group" >
 					<li class="list-group-item" ng-repeat="field in fields">
 						<p><strong>{{field.cat}}</strong></p>  
 						<table class="table table-striped">
-							<tr ng-repeat="option in field.options">
+							<tr ng-repeat="option in field.options track by $index">
+								<td>
+									<i title="delete" class="fa fa-times" style="color:red; cursor:pointer;"></i>
+								</td>
 								<td editable-text="value" ng-repeat="(lang, value) in option" >
 									<code><small>{{lang}}-</small></code>{{value || "empty"}}
 								</td>
@@ -53,10 +66,8 @@
 
 
 			<!-- DEBUGGING COCHES -->
-			<div class="alert alert-info">
-				<h3>Debugging para <strong>Coches</strong> <input  type="checkbox" ng-value="true" ng-model="showCars"> </h3>
-
-				<div class="row center-block" ng-show="showCars">
+			<div class="tab-pane" id="main-cars">
+				<div class="row center-block" >
 					<div class="col-xs-6 row" ng-repeat="product in cars">
 						<div  class="col-sm-12 col-md-8">
 							<div >
@@ -69,33 +80,32 @@
 						</div>
 
 						<!-- FOR LOOP FOR PROPERTIES -->
-						<ul ng-repeat=" prop in product.data"  
-	  class="col-sm-6 list-group" >
-	  <li class="list-group-item list-group-item-danger" >
-		  <!-- PROPERTY -->
-		  <span ng-repeat="(propName, propValue) in prop.lang.cat"  >
-			  <!-- Do not change ng-if, important for compiling all-lang.py -->
-			  {{propName}} 
-			  - 
-			  <code>
-				  {{propValue}}
-			  </code>
-		  </span>
-		  <i  class="fa fa-edit pull-right" ng-click="showEditForm=showEditForm?false:true" style="cursor: pointer;"></i>
-	  </li>
-	  <li class="list-group-item" ng-show="showEditForm" ng-repeat="(propName, propValue) in prop.lang.cat" >
-		  <!-- VALUE -->
-		  <input class="form-control" type="text" ng-if="getField(propName).type=='text'" ng-value="propValue">
-		  <select class="form-control" ng-if="getField(propName).type=='select'">
-			  <option ng-repeat="option in getField(propName).options">{{option.cat}}</option>
-		  </select>
-	  </li>
+						<ul ng-repeat=" prop in product.data"  class="col-sm-6 list-group" >
+							<li class="list-group-item list-group-item-danger" >
+								<!-- PROPERTY -->
+								<span ng-repeat="(propName, propValue) in prop.lang.cat"  >
+									<!-- Do not change ng-if, important for compiling all-lang.py -->
+									{{propName}} 
+									- 
+									<code>
+										{{propValue}}
+									</code>
+								</span>
+								<i  class="fa fa-edit pull-right" ng-click="showEditForm=showEditForm?false:true" style="cursor: pointer;"></i>
+							</li>
+							<li class="list-group-item" ng-show="showEditForm" ng-repeat="(propName, propValue) in prop.lang.cat" >
+								<!-- VALUE -->
+								<input class="form-control" type="text" ng-if="getField(propName).type=='text'" ng-value="propValue">
+								<select class="form-control" ng-if="getField(propName).type=='select'">
+									<option ng-repeat="option in getField(propName).options">{{option.cat}}</option>
+								</select>
+							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
-
 		</div>
+
 
 		<div modal-add type="car"></div>
 		<div modal-add type="option"></div>

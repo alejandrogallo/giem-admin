@@ -1,5 +1,5 @@
 <!-- POPUP PER AFEGIR OPCIO -->
-<div ng-app="modalAdd" class="modal fade in" id="add-option-modal">
+<div ng-controller="ModalAddCtrl" class="modal fade in" id="add-option-modal">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -9,11 +9,9 @@
 				</h1>
 			</div>
 			<div class="modal-body">
-				
-				<!-- ACCORDEON -->
+				<!-- FOR LOOP FOR FIELDS	-->
 				<div class="panel panel-default" ng-repeat="field in fields" ng-if="field.type=='select'">
-					
-					<!-- TITOL ACCORDEO -->
+					<!-- Don't forget only the field with type="select" -->
 					<div class="panel-heading" ng-init="option={}">
 						<a href="#" class="fa fa-plus" ng-click="showForm=showForm?false:true">
 							{{field.cat}}
@@ -21,7 +19,7 @@
 					</div>
 					<div ng-show="showForm" class="panel-body">
 						<p class="alert alert-info">
-							<strong>Debugging alert:</strong> {{option}}
+							<strong>Control</strong> {{option}}
 						</p>
 						<form class="form-group row" id="form-{{$index}}" ng-submit="addOption(field,option)">
 							<div class="col-xs-6" ng-repeat="lan in languages">

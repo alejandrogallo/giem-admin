@@ -13,14 +13,14 @@ angular.module('modalAdd', ['ngFileUpload'])
 })
 
 .controller('ModalAddCtrl', ['$scope', 'data', function ($scope, data) {
-	$scope.fields = data.get();
 	$scope.addField = function(field) {
+		// $scope.fields is defined in database
 		$scope.fields.push(field);
 		data.save(fieldsPath, $scope.fields);
 	};
 	$scope.addOption = function(field, option) {
-		field.options.push(option)
-			console.log("Option added");
+		field.options.push(option);
+		console.log("Option added");
 	};
 }])
 

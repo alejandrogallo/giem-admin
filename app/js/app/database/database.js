@@ -8,7 +8,7 @@ angular.module('database',[])
 	this.fieldsPath = "db/fields.json";
 	this.carsPath = "db/cars.json";
 	this.getFields = function () {
-		return this.get(this.fieldsPath));
+		return this.get(this.fieldsPath);
 	};
 	this.getCars = function () {
 		return this.get(this.carsPath);
@@ -27,17 +27,16 @@ angular.module('database',[])
 		});
 		return d.promise;
 	}; 
+	this.saveFields = function (data) {
+		this.save(this.fieldsPath, data);	
+	};
+	this.saveCars = function (data) {
+		this.save(this.carsPath, data);	
+	};
 	this.save = function(path, data) {
-		/////////////////////////////////////////////
-		//  Pushes the data into the data in path  //
-		/////////////////////////////////////////////
-
-		this.get(path).then(function(jsonData) {
-			jsonData.push(data);
-			fs.writeFile(path, jsonData, function (err) {
-				if (err) throw err;
-				console.log('fields.json saved!');
-			});
+		fs.writeFile(path, data, function (err) {
+			if (err) throw err;
+			console.log('fields.json saved!');
 		});
 	};  
 }])
