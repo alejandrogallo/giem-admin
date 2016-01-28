@@ -1,53 +1,53 @@
 <!-- POPUP PER AFEGIR OPCIO -->
 <div ng-controller="ModalAddCtrl" class="modal fade in" id="add-option-modal">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h1 ng-click="selectedField='field'">
-					<i class="fa fa-plus" style="color:red"></i>
-					Afegir Opció
-				</h1>
-			</div>
-			<div class="modal-body">
-				<!-- FOR LOOP FOR FIELDS	-->
-				<div class="panel panel-default" ng-repeat="field in fields" ng-if="field.type=='select'">
-					<!-- Don't forget only the field with type="select" -->
-					<div class="panel-heading" ng-init="option={}">
-						<a href="#" class="fa fa-plus" ng-click="showForm=showForm?false:true">
-							{{field.cat}}
-						</a>
-					</div>
-					<div ng-show="showForm" class="panel-body">
-						<p class="alert alert-info">
-							<strong>Control</strong> {{option}}
-						</p>
-						<form class="form-group row" id="form-{{$index}}" ng-submit="addOption(field,option)">
-							<div class="col-xs-6" ng-repeat="lan in languages">
-								<label>{{lan | uppercase}}</label>
-								<input ng-model="option[lan]" type="text" class="form-control" placeholder="Opció en {{lan}}" required>
-							</div>
-						</form>
-					</div>
-					<div ng-show="showForm" class="panel-footer">
-						<button  class="btn btn-danger" ng-click="showForm=false">
-							<i class="fa fa-close" ></i>
-							Cancelar
-						</button>
-						<button type="submit" form="form-{{$index}}" class="btn btn-success" >
-							<i class="fa fa-plus" ></i>
-							Afegir
-						</button>
-					</div>
-					
-				</div>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 ng-click="selectedField='field'">
+          <i class="fa fa-plus" style="color:red"></i>
+          Afegir Opció
+        </h1>
+      </div>
+      <div class="modal-body">
+        <!-- FOR LOOP FOR FIELDS  -->
+        <div class="panel panel-default" ng-repeat="field in fields" ng-if="field.type=='select'">
+          <!-- Don't forget only the field with type="select" -->
+          <div class="panel-heading" ng-init="option={}">
+            <a href="#" class="fa fa-plus" ng-click="showForm=showForm?false:true">
+              {{field.cat}}
+            </a>
+          </div>
+          <div ng-show="showForm" class="panel-body">
+            <p class="alert alert-info">
+            <strong>Control</strong> {{option}}
+            </p>
+            <form class="form-group row" id="form-{{$index}}" ng-submit="addOption(field,option)">
+              <div class="col-xs-6" ng-repeat="lan in languages">
+                <label>{{lan | uppercase}}</label>
+                <input ng-model="option[lan]" type="text" class="form-control" placeholder="Opció en {{lan}}" required>
+              </div>
+            </form>
+          </div>
+          <div ng-show="showForm" class="panel-footer">
+            <button  class="btn btn-danger" ng-click="showForm=false">
+              <i class="fa fa-close" ></i>
+              Cancelar
+            </button>
+            <button type="submit" form="form-{{$index}}" class="btn btn-success" >
+              <i class="fa fa-plus" ></i>
+              Afegir
+            </button>
+          </div>
 
-			</div>
-			<div class="modal-footer">
-				<button class="btn btn-danger" data-dismiss="modal">
-					<i class="fa fa-close"></i>
-					Descartar
-				</button>
-			</div>
-		</div>
-	</div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" data-dismiss="modal">
+          <i class="fa fa-close"></i>
+          Descartar
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

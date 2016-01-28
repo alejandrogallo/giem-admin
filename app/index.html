@@ -1,149 +1,149 @@
 <html>
-	<head>
-		<title>Cars Giem Admin</title>
-		<!-- CSS -->
-		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css"></script>
-		<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css"></script>
-		<link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
-		<link href="css/style.css" rel="stylesheet">
-	</head>
-	<body ng-app="app" ng-controller="FieldsSearchCtrl">
+  <head>
+    <title>Cars Giem Admin</title>
+    <!-- CSS -->
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css"></script>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css"></script>
+    <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body ng-app="app" ng-controller="FieldsSearchCtrl">
 
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#">GIEM CARS</a>
-				</div>
-				<div class="container">
-					<ul class="nav navbar-nav">
-						<li class="dropdown">
-							<a href="#" data-toggle="dropdown">
-								<i class="fa fa-plus"></i>
-								Agregar
-								<ul class="dropdown-menu">
-									<li>
-										<a href="#" data-toggle="modal" data-target="#add-car-modal">Cotxes</a>
-										<a href="#" data-toggle="modal" data-target="#add-option-modal">Opció</a>
-									</li>
-								</ul>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">GIEM CARS</a>
+        </div>
+        <div class="container">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" data-toggle="dropdown">
+                <i class="fa fa-plus"></i>
+                Agregar
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="#" data-toggle="modal" data-target="#add-car-modal">Cotxes</a>
+                    <a href="#" data-toggle="modal" data-target="#add-option-modal">Opció</a>
+                  </li>
+                </ul>
 
-							</a>
-						</li>
-						<li> <a href="#" ng-click="saveAll()"><i class="fa fa-save"></i> Guardar</a> </li>
-						<li> <a href="#" onclick="alert('encara no implementat')"><i class="fa fa-upload"></i> Actualitzar</a> </li>
-					</ul>
-				</div>
+              </a>
+            </li>
+            <li> <a href="#" ng-click="saveAll()"><i class="fa fa-save"></i> Guardar</a> </li>
+            <li> <a href="#" onclick="alert('encara no implementat')"><i class="fa fa-upload"></i> Actualitzar</a> </li>
+          </ul>
+        </div>
 
-			</div>
-		</nav>
+      </div>
+    </nav>
 
-		<ul class="nav nav-tabs">
-			<li role="presentation" ><a data-toggle="tab" href="#" data-target="#main-cars">Cotxes</a></li>
-			<li role="presentation"><a data-toggle="tab" href="#" data-target="#main-fields">Camps</a></li>
-		</ul>
+    <ul class="nav nav-tabs">
+      <li role="presentation" ><a data-toggle="tab" href="#" data-target="#main-cars">Cotxes</a></li>
+      <li role="presentation"><a data-toggle="tab" href="#" data-target="#main-fields">Camps</a></li>
+    </ul>
 
-		<div class="tab-content">
-			<!-- FIELDS FOR LOOP -->
-			<div id="main-fields" class="tab-pane">
-				<ul class="list-group" >
-					<li class="list-group-item list-group-item-success">
-						<h4 class="list-group-item-heading">
-							Camps de tipus sel.lecció
-						</h4>
-					</li>
-					<li class="list-group-item" ng-repeat="field in fields" ng-if="field.type=='select'">
-						<p><strong>{{field.cat}}</strong></p>  
-						<table class="table table-striped">
-							<tr ng-repeat="option in field.options track by $index">
-								<td>
-									<i ng-click="removeOption(field, option)" title="delete" class="fa fa-times" style="color:red; cursor:pointer;"></i>
-								</td>
-								<td ng-repeat="(lang, value) in option" >
-									<code><small>{{lang}}-</small></code>
-									<span editable-text="option[lang]" >
-										{{value || "empty"}}
-									</span>
-								</td>
-							</tr>
-						</table>
-					</li>
-				</ul>
-			</div>
-
-
-			<!-- DEBUGGING COCHES -->
-			<div class="tab-pane" id="main-cars">
-				<div class="row center-block" >
-					<div class="col-xs-6 row" ng-repeat="product in cars" >
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<button class="btn btn-danger">
-									<i class="fa fa-times"></i>
-								</button>
-								<button class="btn" ng-class="{'btn-success':showCarProps, 'btn-warning':!showCarProps}" ng-click="showCarProps=showCarProps?false:true">
-												<i class="fa " ng-class="{'fa-plus':!showCarProps, 'fa-minus':showCarProps}" ></i>
-								</button>
-							</div>
-							<div class="panel-body">
-								<div ng-repeat="img in product.images" class="row col-sm-6">
-									<div  class="panel panel-default">
-										<div class="panel-heading">
-											<i class="fa fa-times" ng-click="deletePictureByIndex(product, $index)"></i>
-										</div>
-										<div class="panel-body">
-											<!-- FOR LOOP FOR IMAGES -->
-											<img  class="" style="width: 100px; height: 100px;" src="../{{img}}" /> 
-										</div>
-
-									</div>
-
-								</div>
-
-								<!-- FOR LOOP FOR PROPERTIES -->
-								<ul ng-repeat=" prop in product.data"  class="col-sm-12 list-group" ng-show="showCarProps">
-									<li class="list-group-item list-group-item-danger" >
-										<!-- PROPERTY -->
-										<span ng-repeat="(propName, propValue) in prop.lang.cat"  >
-											{{propName}} 
-											- 
-											<code>
-												{{propValue}}
-											</code>
-										</span>
-									<i  class="fa fa-edit pull-right" ng-click="showEditForm=showEditForm?false:true" style="cursor: pointer;"></i>
-									</li>
-									<li class="list-group-item" ng-show="showEditForm" ng-repeat="(propName, propValue) in prop.lang.cat" >
-										<!-- VALUE -->
-										<input class="form-control" type="text" ng-if="getField(propName).type=='text'" ng-value="propValue">
-										<select class="form-control" ng-model="prop" ng-if="getField(propName).type=='select'">
-											<option ng-value="option" ng-repeat="option in getField(propName).options">{{option.cat}}</option>
-										</select>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+    <div class="tab-content">
+      <!-- FIELDS FOR LOOP -->
+      <div id="main-fields" class="tab-pane">
+        <ul class="list-group" >
+          <li class="list-group-item list-group-item-success">
+            <h4 class="list-group-item-heading">
+              Camps de tipus sel.lecció
+            </h4>
+          </li>
+          <li class="list-group-item" ng-repeat="field in fields" ng-if="field.type=='select'">
+            <p><strong>{{field.cat}}</strong></p>  
+            <table class="table table-striped">
+              <tr ng-repeat="option in field.options track by $index">
+                <td>
+                  <i ng-click="removeOption(field, option)" title="delete" class="fa fa-times" style="color:red; cursor:pointer;"></i>
+                </td>
+                <td ng-repeat="(lang, value) in option" >
+                  <code><small>{{lang}}-</small></code>
+                  <span editable-text="option[lang]" >
+                    {{value || "empty"}}
+                  </span>
+                </td>
+              </tr>
+            </table>
+          </li>
+        </ul>
+      </div>
 
 
-		<div modal-add type="car"></div>
-		<div modal-add type="option"></div>
+      <!-- DEBUGGING COCHES -->
+      <div class="tab-pane" id="main-cars">
+        <div class="row center-block" >
+          <div class="col-xs-6 row" ng-repeat="product in cars" >
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <button class="btn btn-danger">
+                  <i class="fa fa-times"></i>
+                </button>
+                <button class="btn" ng-class="{'btn-success':showCarProps, 'btn-warning':!showCarProps}" ng-click="showCarProps=showCarProps?false:true">
+                        <i class="fa " ng-class="{'fa-plus':!showCarProps, 'fa-minus':showCarProps}" ></i>
+                </button>
+              </div>
+              <div class="panel-body">
+                <div ng-repeat="img in product.images" class="row col-sm-6">
+                  <div  class="panel panel-default">
+                    <div class="panel-heading">
+                      <i class="fa fa-times" ng-click="deletePictureByIndex(product, $index)"></i>
+                    </div>
+                    <div class="panel-body">
+                      <!-- FOR LOOP FOR IMAGES -->
+                      <img  class="" style="width: 100px; height: 100px;" src="../{{img}}" /> 
+                    </div>
 
-		<!-- include JS -->
+                  </div>
 
-		<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-		<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-		<script type="text/javascript" src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
-		<script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+                </div>
 
-		<script type="text/javascript" src="js/app/app.js"></script>
-		<script type="text/javascript" src="js/app/database/database.js"></script>
-		<script type="text/javascript" src="js/app/modalAdd/modalAdd.js"></script>
-		<script type="text/javascript" stc="js/app/fileUpload/fileUpload.js"></script>
+                <!-- FOR LOOP FOR PROPERTIES -->
+                <ul ng-repeat=" prop in product.data"  class="col-sm-12 list-group" ng-show="showCarProps">
+                  <li class="list-group-item list-group-item-danger" >
+                    <!-- PROPERTY -->
+                    <span ng-repeat="(propName, propValue) in prop.lang.cat"  >
+                      {{propName}} 
+                      - 
+                      <code>
+                        {{propValue}}
+                      </code>
+                    </span>
+                  <i  class="fa fa-edit pull-right" ng-click="showEditForm=showEditForm?false:true" style="cursor: pointer;"></i>
+                  </li>
+                  <li class="list-group-item" ng-show="showEditForm" ng-repeat="(propName, propValue) in prop.lang.cat" >
+                    <!-- VALUE -->
+                    <input class="form-control" type="text" ng-if="getField(propName).type=='text'" ng-value="propValue">
+                    <select class="form-control" ng-model="prop" ng-if="getField(propName).type=='select'">
+                      <option ng-value="option" ng-repeat="option in getField(propName).options">{{option.cat}}</option>
+                    </select>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-	</body>
+
+    <div modal-add type="car"></div>
+    <div modal-add type="option"></div>
+
+    <!-- include JS -->
+
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+
+    <script type="text/javascript" src="js/app/app.js"></script>
+    <script type="text/javascript" src="js/app/database/database.js"></script>
+    <script type="text/javascript" src="js/app/modalAdd/modalAdd.js"></script>
+    <script type="text/javascript" stc="js/app/fileUpload/fileUpload.js"></script>
+
+  </body>
 </html>
